@@ -8,7 +8,7 @@
         "name": "(gdb) Launch",
         "type": "cppdbg",
         "request": "launch",
-        "program": "enter program name, for example ${workspaceFolder}/a.out",
+        "program": "Lab2_Selection_repetition_Logic_Functions.c/a.out",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${fileDirname}",
