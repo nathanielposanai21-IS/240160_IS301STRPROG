@@ -8,7 +8,7 @@
         "name": "(gdb) Launch",
         "type": "cppdbg",
         "request": "launch",
-        "program": "240160-IS301STRPROG/Lab2_Selection_repetition_Logic_Functions.c/a.out",
+        "program": "240160-IS301STRPROG/Labs/Lab2/Lab2_Selection_repetition_Logic_Functions.c/a.out",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${fileDirname}",
