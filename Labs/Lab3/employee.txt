@@ -1,4 +1,4 @@
-EmployeeNo Department PayRate Exempt HoursWorked
+EmpNo Dept PayRate Exempt Hours
 0101 41 8.11 Y 49
 0722 32 7.22 N 40
 1273 23 5.43 Y 39

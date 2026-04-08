@@ -1,52 +1,51 @@
-#include <stdio.h> 
+#include <stdio.h>
 #include <stdlib.h>
 
 int main() {
-    FILE *inFile, *outFile;
-
-    char empNo[10];
+    // 7. Use of Variables & Data Types: Define fields for the employee data 
+    char empNo[10], exempt, headerLine[100];
     int dept, hoursWorked;
     float payRate, basePay;
-    char exempt;
 
-    // Open input file
-    inFile = fopen("employee.txt", "r");
+    // 1. File Handling (Input): Open employee.txt for reading [cite: 36, 59]
+    FILE *inFile = fopen("employee.txt", "r");
     if (inFile == NULL) {
-        printf("Error opening employee.txt\n");
+        printf("Error opening employee.txt\n"); // 8. Error Handling [cite: 38, 59]
         return 1;
     }
 
-    // Open output file
-    outFile = fopen("payroll_register.txt", "w");
+    // 2. File Handling (Output): Create payroll_register.txt for writing [cite: 41, 59]
+    FILE *outFile = fopen("payroll_register.txt", "w");
     if (outFile == NULL) {
-        printf("Error creating payroll_register.txt\n");
+        printf("Error creating payroll_register.txt\n"); // 8. Error Handling [cite: 43, 59]
         fclose(inFile);
         return 1;
     }
 
-    // Skip header line
-    char header[100];
-    fgets(header, sizeof(header), inFile);
+    // 3. Data Reading and Parsing: Skip the header in the input file [cite: 47, 59]
+    fgets(headerLine, sizeof(headerLine), inFile);
 
-    // Write headers to output file
-    fprintf(outFile, "%-10s %-10s %-10s %-8s %-15s %-10s\n",
-            "EmpNo", "Dept", "PayRate", "Exempt", "HoursWorked", "BasePay");
+    // 5. Output Formatting: Write headers to the register [cite: 27, 48, 59]
+    fprintf(outFile, "%-15s %-12s %-10s %-8s %-15s %-10s\n", 
+            "Employee No.", "Department", "Pay Rate", "Exempt", "Hours Worked", "Base Pay");
+    fprintf(outFile, "----------------------------------------------------------------------------\n");
 
-    // Read data and process
-    while (fscanf(inFile, "%s %d %f %c %d",
-                  empNo, &dept, &payRate, &exempt, &hoursWorked) == 5) {
-
+    // 6. Looping & Control Logic: Read through the file until the end [cite: 49, 59]
+    while (fscanf(inFile, "%s %d %f %c %d", empNo, &dept, &payRate, &exempt, &hoursWorked) == 5) {
+        
+        // 4. Base Pay Calculation: payRate * hoursWorked [cite: 33, 51, 59]
         basePay = payRate * hoursWorked;
 
-        fprintf(outFile, "%-10s %-10d %-10.2f %-8c %-15d %-10.2f\n",
+        // a) Employee number should be left-justified (using %-15s) [cite: 28]
+        fprintf(outFile, "%-15s %-12d %-10.2f %-8c %-15d %-10.2f\n", 
                 empNo, dept, payRate, exempt, hoursWorked, basePay);
     }
 
-    // Close files
+    // Close files and finish [cite: 53, 54]
     fclose(inFile);
     fclose(outFile);
 
-    printf("Payroll register has been created.\n");
+    printf("Payroll register has been created.\n"); // [cite: 55]
 
     return 0;
 }
